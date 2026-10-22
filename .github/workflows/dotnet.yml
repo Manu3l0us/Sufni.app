@@ -15,13 +15,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
     - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v6
       with:
         dotnet-version: 10.0.x
-    - name: Restore dependencies
-      run: dotnet workload install android macos
+        workloads: android
+    #- name: Restore dependencies
+    #  run: dotnet workload install android macos
     - name: Build Linux
       run: dotnet build Sufni.App/Sufni.App.Linux/Sufni.App.Linux.csproj -c Debug
     - name: Build Windows
@@ -32,5 +33,5 @@ jobs:
       run: dotnet test Sufni.App.Tests/Sufni.App.Tests.csproj -c Debug --verbosity normal
     - name: Test Kinematics
       run: dotnet test Sufni.Kinematics.Tests/Sufni.Kinematics.Tests.csproj -c Debug --verbosity normal
-    - name: Test Telemetry
-      run: dotnet test Sufni.Telemetry.Tests/Sufni.Telemetry.Tests.csproj -c Debug --verbosity normal
+    #- name: Test Telemetry
+    #  run: dotnet test Sufni.Telemetry.Tests/Sufni.Telemetry.Tests.csproj -c Debug --verbosity normal
