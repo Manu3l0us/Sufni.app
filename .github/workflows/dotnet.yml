@@ -21,7 +21,7 @@ jobs:
       with:
         dotnet-version: 10.0.x
     - name: Restore dependencies
-      run: dotnet workload restore
+      run: dotnet workload install android macos
     - name: Build Desktop
       run: dotnet build Sufni.Desktop.sln -c Debug
     - name: Build Android
