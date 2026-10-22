@@ -1,0 +1,36 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 10.0.x
+    - name: Restore dependencies
+      run: dotnet workload install android macos
+    - name: Build Linux
+      run: dotnet build Sufni.App/Sufni.App.Linux/Sufni.App.Linux.csproj -c Debug
+    - name: Build Windows
+      run: dotnet build Sufni.App/Sufni.App.Windows/Sufni.App.Windows.csproj -c Debug
+    - name: Build Android
+      run: dotnet build Sufni.Android.sln -c Debug
+    - name: Test App
+      run: dotnet test Sufni.App.Tests/Sufni.App.Tests.csproj -c Debug --verbosity normal
+    - name: Test Kinematics
+      run: dotnet test Sufni.Kinematics.Tests/Sufni.Kinematics.Tests.csproj -c Debug --verbosity normal
+    - name: Test Telemetry
+      run: dotnet test Sufni.Telemetry.Tests/Sufni.Telemetry.Tests.csproj -c Debug --verbosity normal
