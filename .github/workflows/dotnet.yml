@@ -28,5 +28,9 @@ jobs:
       run: dotnet build Sufni.App/Sufni.App.Windows/Sufni.App.Windows.csproj -c Debug
     - name: Build Android
       run: dotnet build Sufni.Android.sln -c Debug
-    - name: Test
-      run: dotnet test --no-build --verbosity normal Sufni.App.Tests/Sufni.App.Tests.csproj
+    - name: Test App
+      run: dotnet test Sufni.App.Tests/Sufni.App.Tests.csproj -c Debug --verbosity normal
+    - name: Test Kinematics
+      run: dotnet test Sufni.Kinematics.Tests/Sufni.Kinematics.Tests.csproj -c Debug --verbosity normal
+    - name: Test Telemetry
+      run: dotnet test Sufni.Telemetry.Tests/Sufni.Telemetry.Tests.csproj -c Debug --verbosity normal
