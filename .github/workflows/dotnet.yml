@@ -23,6 +23,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet workload restore
     - name: Build
-      run: dotnet build --no-restore Sufni.App/Sufni.App.Linux/Sufni.App.Linux.csproj -c Debug
+      run: dotnet build Sufni.App/Sufni.App.Linux/Sufni.App.Linux.csproj -c Debug
     - name: Test
       run: dotnet test --no-build --verbosity normal
