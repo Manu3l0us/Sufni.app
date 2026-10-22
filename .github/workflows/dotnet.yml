@@ -22,7 +22,9 @@ jobs:
         dotnet-version: 10.0.x
     - name: Restore dependencies
       run: dotnet workload restore
-    - name: Build
-      run: dotnet build Sufni.App.sln -c Debug
+    - name: Build Desktop
+      run: dotnet build Sufni.Desktop.sln -c Debug
+    - name: Build Android
+      run: dotnet build Sufni.Android.sln -c Debug
     - name: Test
       run: dotnet test --no-build --verbosity normal Sufni.App.Tests/Sufni.App.Tests.csproj
